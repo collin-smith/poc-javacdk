@@ -9,22 +9,39 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cdk.version>2.49.0</cdk.version>
+        <cdk.version>2.47.0</cdk.version>
         <constructs.version>[10.0.0,11.0.0)</constructs.version>
         <junit.version>5.7.1</junit.version>
     </properties>
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                 </configuration>
             </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -45,11 +62,13 @@
             <version>${cdk.version}</version>
         </dependency>
 
+
         <dependency>
             <groupId>software.constructs</groupId>
             <artifactId>constructs</artifactId>
             <version>${constructs.version}</version>
         </dependency>
+
 
         <dependency>
           <groupId>org.junit.jupiter</groupId>
@@ -57,5 +76,53 @@
           <version>${junit.version}</version>
           <scope>test</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-lambda-java-core</artifactId>
+    <version>1.2.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-lambda-java-events</artifactId>
+    <version>3.11.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.9.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
+<dependency>
+    <groupId>com.amazonaws</groupId>
+    <artifactId>aws-java-sdk-dynamodb</artifactId>
+    <version>1.12.326</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/software.amazon.awscdk/apigateway
+<dependency>
+    <groupId>software.amazon.awscdk</groupId>
+    <artifactId>apigateway</artifactId>
+    <version>1.178.0</version>
+</dependency>
+ -->
+
+
+        
+        
     </dependencies>
 </project>
